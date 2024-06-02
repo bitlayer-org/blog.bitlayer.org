@@ -1,0 +1,65 @@
+# Site
+name: "Bitlayer Blog"
+title: "Bitlayer Blog"
+description: "Learn about Bitlayer’s technology, research, and latest developments."
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/log.png'
+baseurl: ''
+google_analytics: ''
+disqus: 'bitlayer-blog'
+mailchimp-list: ''
+include: ["_pages"]
+permalink: /:title/
+
+# Authors
+authors:
+  allen:
+    name: Allen
+    display_name: Allen Joseph
+    avatar: 'assets/images/allen-avatar.jpg'
+    gravatar: a1234567890b123c456d789e0123f456
+    email: allenj@bitlayer.io
+    web: https://www.bitlayer.org
+    twitter: https://twitter.com/allenjosephaj
+    description: "Head of Devrel at Bitlayer"
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
+    
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Adsense (change to "enabled" to activate, also your client id and ad slot. Create a new ad unit from your Adsense account to get the slot.)
+adsense: "disabled"
+adsense-data-ad-client: "ca-pub-9876543212345678"
+adsense-data-ad-slot: "9876543210"
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+
