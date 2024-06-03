@@ -22,6 +22,13 @@ authors:
     web: https://www.bitlayer.org
     twitter: https://twitter.com/allenjosephaj
     description: "Head of Devrel at Bitlayer"
+  daniel:
+    name: Daniel
+    display_name: Daniel
+    avatar: 'assets/images/daniel-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Chief Architect at Bitlayer"
+
 
 # Plugins
 plugins:
