@@ -86,11 +86,6 @@ puts markdown.to_html
 printf("Hello World");
 ```
 
-
-
-
-![walking]({{ site.baseurl }}/assets/images/8.jpg)
-
 ## Reference lists
 
 The quick brown jumped over the lazy.
@@ -102,3 +97,9 @@ Another way to insert links in markdown is using reference lists. You might want
 Perhaps the best part of Markdown is that you're never limited to just Markdown. You can write HTML directly in the Markdown editor and it will just work as HTML usually does. No limits! Here's a standard YouTube embed code as an example:
 
 <p><iframe style="width:100%;" height="315" src="https://www.youtube.com/embed/Cniqsc9QfDo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+
+## LaTex support
+
+- example (1) $h_\theta(x) = \Large\frac{1}{1 + \mathcal{e}^{(-\theta^\top x)}}$
+- example (2): $a^2 + b^2 = c^2$
+- example (3): $\sum_{i=1}^m y^{(i)}$
