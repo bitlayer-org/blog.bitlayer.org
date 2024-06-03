@@ -5,7 +5,7 @@ description: "Learn about Bitlayer’s technology, research, and latest developm
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/log.png'
 baseurl: ''
-google_analytics: ''
+google_analytics: 'G-15G10SF1V5'
 disqus: 'bitlayer-blog'
 mailchimp-list: ''
 include: ["_pages"]
