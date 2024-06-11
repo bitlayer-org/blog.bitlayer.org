@@ -3,7 +3,7 @@ layout: post
 title:  "OP_CAT: A Big Step towards Bitcoin Contracts, From Vault to General Computing"
 author: andrew
 categories: [ op_cat, bitcoin, matt ]
-image: assets/images/0611_opcat/opcat_showpic.jpg
+image: assets/images/20240611/opcat_showpic.jpg
 ---
 
 
@@ -186,7 +186,7 @@ With the introduction of the previous two sections, you should be able to constr
 
 First, we define the process of Vault precisely according to the following figure. *Vault Taproot* is a Taproot output condition that defines three leaf scripts, and these three leaf scripts contain the unlocking conditions of Trigger transaction, Complete transaction and Cancel transaction respectively. To spend Taproot, one of the leaf scripts must be unlocked. The Deposit transaction itself is the startup transaction that opens the Vault, and only needs to specify the output as *Vault Taproot.*
 
-![Vault_without_script](/assets/images/0611_opcat/Vault_without_script.jpg)
+![Vault_without_script](/assets/images/20240611/Vault_without_script.jpg)
 
 We consider the constraints of different transactions and use the pseudo-opcodes provided in the previous sections to implement these constraints. Note that for simplicity, we describe the constraints on the number of inputs and outputs in the text, but these constraints are not implemented in the pseudo-code. However, referring to the previous sections, these constraints are easy to check by the way when constructing transactions in the stack.
 
@@ -221,7 +221,7 @@ OP_EQUALVERIFY
 
 Below figure is just put the pseudocode on the leaf of *Vault Taproot*.
 
-![Vault_with_script](/assets/images/0611_opcat//Vault_with_script.jpg)
+![Vault_with_script](/assets/images/20240611//Vault_with_script.jpg)
 
 # Implement General Computing (MATT)
 
@@ -235,7 +235,7 @@ In order to comply with the description method of MATT proposal, this section fi
 
 The Output Key specified by a Bitcoin transaction UTXO using the Taproot feature is not a real public key, but is formed by combining the Internal key and Taptree through the "Taproot Tweak" process. Users can spend this UTXO by giving the corresponding signature of the Internal Key, or by unlocking a leaf node (TapLeaf) in the Taptree. Sometimes the Internal Key is not a valid public key, and the UTXO can only be spent by unlocking the Taptree. For more features of Taproot, interested readers can refer to the [interpretation](https://github.com/bitcoinops/taproot-workshop/blob/master/2.4-taptree.ipynb).
 
-![taproot_with_opccv](/assets/images/0611_opcat//taproot_with_opccv.jpg#pic_center)
+![taproot_with_opccv](/assets/images/20240611//taproot_with_opccv.jpg#pic_center)
 
 OP_CCV feature combines optional 32-byte component *data* outside the Internal key and Taptree to form the Output Key, as shown in the figure above.
 
@@ -280,7 +280,7 @@ Each dashed box in the figure represents a Bitcoin transaction, the solid line o
 
 Although there are some variables expressed by mathematical formulas in the figure, roughly speaking, the script content contained in all blue outputs is fixed, that is, from the first transaction, it has been guaranteed that the subsequent series of transactions must comply with the transaction specifications in the figure below. For example, the unlock script Start_Challenge this output requires that the output of the transaction that costs it must be Alice_Reveal, which can be achieved through the introspection of the OP_CAT introduced in the previous section. In addition to formatting the transaction, this challenge also requires passing some state, namely the gray box representing the unlock script in each Bitcoin transaction, where the variables represent the input required for UTXO unlocking, and the first line of these variables represents the constrained *data*, which is the *data* passed between UTXOs.
 
-![matt](/assets/images/0611_opcat//matt.jpg)
+![matt](/assets/images/20240611//matt.jpg)
 
 
 Now let's describe the process of the binary challenge protocol. Alice and Bob are two parties in the challenge-response process. Alice declares in advance $ f(x) = y $ and the state transition tree in the calculation process $ t(0, n-1) $ , that is, the root of the Merkle tree composed of $x_0, ...x_{n-1}$, and collateralizes somey money (*Delcare Tx*). But Bob, as the counterparty, believes that $ f(x) \neq y $ and initiate the challenge. Another result $y'$ and the state transition tree composed of another different state transition list $$x'_0, ..., x'_{n-1}$$, $t'(0, n-1)$ need to be provided (*Start Challenge Tx*). Next is a recursion process. For the state transition tree provided by Alice before $ t(i, j) $ (if it is the first round of recursion, then $ i = 0, j = n-1 $ ), Alice always reveals the state of the middle node of the state transition tree $ x_m $ , the root of the left subtree $ t(i, m) $ and the root of the right subtree $ t(m, j) $ (*Alice Reveal Tx*), and Bob observes these values and compares them with the state transition tree he constructed, providing different roots of the left subtree $ t'(i, m) $ (*Bob Reveal Left Tx*) or the root of the right subtree $ t'(m, j) $ (*Bob Reveal Right Tx*). Continue this recursion process until Bob finds $ m $ , such that $$ x_m = x'_m $$ and $$ x_{m+1} \neq x'_{m+1} $$ . At this point, Bob can prove by executing the corresponding function script $ f_m(x_m) \neq x'_{m+1}$ , and finally take Alice's collateralized Bitcoin (*Leaf Tx*).
