@@ -36,6 +36,18 @@ authors:
     description: "Researcher & Engineer at Bitlayer"
     twitter: https://twitter.com/czxbinance
 
+  lynndell:
+    name: Lynndell
+    display_name: Lynndell
+    avatar: 'assets/images/lynndell-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Researcher at Bitlayer"
+  mutourend:
+    name: mutourend
+    display_name: mutourend
+    avatar: 'assets/images/mutourend-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Researcher at Bitlayer"
 
 # Plugins
 plugins:
