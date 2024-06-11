@@ -34,7 +34,18 @@ authors:
     avatar: 'assets/images/andrew-avatar.jpg'
     web: https://www.bitlayer.org
     description: "Researcher & Engineer at Bitlayer"
-
+  lynndell:
+    name: Lynndell
+    display_name: Lynndell
+    avatar: 'assets/images/lynndell-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Researcher at Bitlayer"
+  mutourend:
+    name: mutourend
+    display_name: mutourend
+    avatar: 'assets/images/mutourend-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Researcher at Bitlayer"
 
 # Plugins
 plugins:
