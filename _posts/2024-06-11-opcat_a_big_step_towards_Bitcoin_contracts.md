@@ -3,7 +3,7 @@ layout: post
 title:  "OP_CAT: A Big Step towards Bitcoin Contracts, From Vault to General Computing"
 author: andrew
 categories: [ op_cat, bitcoin, matt ]
-image: assets/images/20240611/opcat_showpic.jpg
+image: assets/images/common/common.jpg
 ---
 
 

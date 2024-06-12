@@ -3,7 +3,7 @@ layout: post
 title:  "BitVM and Its Optimization Considerations"
 author: lynndell
 categories: [ BitVM ]
-image: assets/images/20240612/OP_DLC_BitVM.png
+image: assets/images/20240325/bitvm_optimization.webp
 ---
 
 # 1. Introduction

@@ -3,7 +3,7 @@ layout: post
 title:  "OP-DLC 2 : Great Truths are Always Simple !"
 author: lynndell
 categories: [ DLC, OP-DLC, BitVM ]
-image: assets/images/20240612/OP_DLC_BitVM.png
+image: assets/images/common/dlc.png
 ---
 
 # 1. Introduction
@@ -85,7 +85,7 @@ OP-DLC includes the following five provisions:
   - If Oracle_sign is dishonest, meaning anyone can successfully initiates a Disprove-CET1 transaction and spend the connector A output, then the Oracle’s signature is invalid, and they lose the staked 2 BTC. In the future, that Oracle will not sign the same result for that DLC contract, as the Settle-CET1 relying on connector A output will be permanently invalid.
 - The challenge in OP-DLC is permissionless, meaning any participant can supervise whether the contracts within OP-DLC are correctly executed. This minimizes trust in the Oracle. Compared to the Lightning Network, Alice and Bob can also be offline because the CET will only be settled if the Oracle signs honestly, while a malicious Oracle will be challenged and punished by anyone else.
 
-[![OP_DLC_2_Txs](/assets/images/20240612/OP_DLC_2_Txs.png)](/assets/images/20240612/OP_DLC_2_Txs.png)
+[![OP_DLC_2_Txs](/assets/images/20240531/OP_DLC_2_Txs.png)](/assets/images/20240531/OP_DLC_2_Txs.png)
 
 **Advantages:**
 - **High Asset Control and Trust in Oneself**: Alice and Bob can both become Oracles and sign CETs. The optimistic challenge mechanism will defeat incorrect CETs, preventing malicious actions. Therefore, OP-DLC allows users to trust only themselves. In BitVM, users need to act as Operators and participate in all subsequent deposits to ensure self-trust. If a user acts as an Operator for only a single UTXO deposit in BitVM, that UTXO can be legally reimbursed by any other (n-1) Operators, meaning the user's future withdrawals still depend on other Operators to front the funds. BitVM Operator's reimbursement rights are locked to each individual deposit UTXO.

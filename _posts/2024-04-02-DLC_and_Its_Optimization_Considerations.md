@@ -3,7 +3,7 @@ layout: post
 title:  "DLC and Its Optimization Considerations"
 author: lynndell
 categories: [ DLC, BitVM, OP-DLC ]
-image: assets/images/20240612/OP_DLC_BitVM.png
+image: assets/images/20240402/dlc_and_its_optimization.webp
 ---
 
 # 1. Introduction
