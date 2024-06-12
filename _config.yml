@@ -34,6 +34,7 @@ authors:
     avatar: 'assets/images/andrew-avatar.jpg'
     web: https://www.bitlayer.org
     description: "Researcher & Engineer at Bitlayer"
+    twitter: https://twitter.com/czxbinance
   lynndell:
     name: lynndell
     display_name: lynndell
@@ -47,6 +48,7 @@ authors:
     avatar: 'assets/images/mutourend-avatar.jpg'
     web: https://www.bitlayer.org
     description: "Researcher at Bitlayer"
+    twitter:  https://twitter.com/3foryudizou
 
 # Plugins
 plugins:
