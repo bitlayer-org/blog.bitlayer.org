@@ -37,11 +37,12 @@ authors:
     twitter: https://twitter.com/czxbinance
 
   lynndell:
-    name: Lynndell
-    display_name: Lynndell
+    name: lynndell
+    display_name: lynndell
     avatar: 'assets/images/lynndell-avatar.jpg'
     web: https://www.bitlayer.org
     description: "Researcher at Bitlayer"
+    twitter:  https://twitter.com/lynndell11
   mutourend:
     name: mutourend
     display_name: mutourend
