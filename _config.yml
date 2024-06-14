@@ -49,6 +49,12 @@ authors:
     avatar: 'assets/images/mutourend-avatar.jpg'
     web: https://www.bitlayer.org
     description: "Researcher at Bitlayer"
+  0xhhh:
+    name: 0xhhh
+    display_name: 0xhhh
+    avatar: 'assets/images/0xhhh-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Researcher at Bitlayer"
 
 # Plugins
 plugins:
