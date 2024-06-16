@@ -52,7 +52,7 @@ authors:
   0xhhh:
     name: 0xhhh
     display_name: 0xhhh
-    avatar: 'assets/images/0xhhh-avatar.jpg'
+    avatar: 'assets/images/0xhhh-avatar.png'
     web: https://www.bitlayer.org
     description: "Researcher at Bitlayer"
 
