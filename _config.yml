@@ -55,6 +55,15 @@ authors:
     avatar: 'assets/images/0xhhh-avatar.png'
     web: https://www.bitlayer.org
     description: "Researcher at Bitlayer"
+  
+  andrew:
+    name: Xavier
+    display_name: Xavier
+    avatar: 'assets/images/andrew-avatar.jpg'
+    web: https://www.bitlayer.org
+    description: "Researcher & Engineer at Bitlayer"
+    twitter: https://x.com/Andrew0ngX
+
 
 # Plugins
 plugins:
