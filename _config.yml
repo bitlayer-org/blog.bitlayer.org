@@ -56,13 +56,13 @@ authors:
     web: https://www.bitlayer.org
     description: "Researcher at Bitlayer"
   
-  andrew:
+  xavier:
     name: Xavier
     display_name: Xavier
-    avatar: 'assets/images/andrew-avatar.jpg'
+    avatar: 'assets/images/xavier-avatar.jpg'
     web: https://www.bitlayer.org
     description: "Researcher & Engineer at Bitlayer"
-    twitter: https://x.com/Andrew0ngX
+    twitter: https://x.com/Xavier_0020
 
 
 # Plugins
