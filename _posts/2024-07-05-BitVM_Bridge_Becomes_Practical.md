@@ -21,7 +21,7 @@ To address the limitations of BitVM1, Robin recently proposed BitVM2. This versi
 
 With these innovations, Robin introduces a trustless cross-chain bridge solution for secure BTC transfers between Bitcoin and a side system. Below is the latest BitVM bridge protocol (a transaction graph posted in the BitVM Builders Group on 7/1/2024).
 
-[![permissionless_bitvm_bridge](/assets/images/20240705//permissionless_bitvm_bridge.jpg)](/assets/images/20240611//permissionless_bitvm_bridge.jpg)
+[![permissionless_bitvm_bridge](/assets/images/20240705//permissionless_bitvm_bridge.jpg)](/assets/images/20240705//permissionless_bitvm_bridge.jpg)
 
 # An In-depth Analysis of BitVM Bridge
 
@@ -31,7 +31,7 @@ The BitVM bridge facilitates BTC transfers between the Bitcoin mainnet and a sid
 
 Bitlayer research team has tried hard to fill in the missing pieces and redrawn the graph as below:
 
-[![permissionless_bitvm_bridge_bitlayer](/assets/images/20240705//permissionless_bitvm_bridge_bitlayer.jpg)](/assets/images/20240611//permissionless_bitvm_bridge_bitlayer.jpg)
+[![permissionless_bitvm_bridge_bitlayer](/assets/images/20240705//permissionless_bitvm_bridge_bitlayer.jpg)](/assets/images/20240705//permissionless_bitvm_bridge_bitlayer.jpg)
 
 In the next chapters, we give an in-depth analysis of BitVM bridge protocol and hopefully this article can help readers understand the overall protocol process and the design rationale behind it.
 
