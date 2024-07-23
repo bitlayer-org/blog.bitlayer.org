@@ -6,9 +6,31 @@ categories: [BitVM, Bridge]
 image: assets/images/20240705/bitvm_bridge.png
 ---
 
+# Introduction
+
 Disclaimer: Some ideas and specifications in this article are currently theoretical. Consult the BitVM community if you find anything uncertain.
 
 It's been a while since our [last BitVM experiment article](https://blog.bitlayer.org/Experiment_of_BitVM_White_Paper/), and lots of changes have happened in the BitVM community. After several iterations, the BitVM bridge protocol now becomes practical and we may see Robin's BitVM bridge come out sometime this year.
+
+
+# Change History
+
+
+| Version | Date  | Description |
+| :--- | :---: | :---: |
+| 1.0  | 2024-07-05 | Initial release |
+| 1.1  | 2024-07-23 | Revise the description of the start time |
+
+<style>
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+</style>
+<br>
 
 # From BitVM1 to BitVM2
 
@@ -88,13 +110,13 @@ When Alice decides to deposit her BTC to the side system, the cross-chain protoc
 ### Operator reimbursement
 
 1. **Kickoff 1 Transaction**: After the operator fronts that capital, they will sign and broadcast the Kickoff 1 Transaction built during the Setup phase to open the reimbursement path. At this time, the operator will lock 2 BTC as a guarantee for honest reimbursement. Any identified malicious behavior will not only prevent the operator from obtaining the payment cost and profit but also result in the loss of the 2 BTC used as a guarantee.
-2. **Start Time Transaction**: Within 6 hours after the confirmation of the Kickoff 1 Transaction, the operator needs to send a Start Time Transaction to reveal the start time of Bob's withdrawal request. The start time should be slightly earlier than when Bob initiated the Withdraw Transaction in the side system. The Start Time Transaction will also verify that the current BTC time is greater than the start time.
+2. **Start Time Transaction**: Within 6 hours after the confirmation of the Kickoff 1 Transaction, the operator needs to send a Start Time Transaction to reveal the start time of the reimbursement process. The start time should be later than the completion time of the Peg-out Transaction. The Start Time Transaction will also verify that the current time is greater than the start time.
    1. **Start Time Timeout Transaction**: If the operator does not send a Start Time Transaction within 6 hours to consume the third output of the Kickoff 1 Transaction, any verifier can construct a Start Time Timeout Transaction to punish the operator and terminate the reimbursement process.
-3. **Kickoff 2 Transaction**: Two weeks after the confirmation of the Kickoff 1 Transaction, the operator will construct and sign the Kickoff 2 Transaction, revealing the consensus state of the side system between the start time and two weeks later. The goal is to anchor a side system state in Bitcoin for subsequent challenge verification. The operator must front within two weeks after Bob issues the Withdraw transaction, and this Peg-out Transaction should also be processed in the side system within the same period.
+3. **Kickoff 2 Transaction**: Two weeks after the confirmation of the Kickoff 1 Transaction, the operator will construct and sign the Kickoff 2 Transaction, revealing the consensus state of the side system between the start time and two weeks later. The goal is to anchor a side system state in Bitcoin for subsequent challenge verification.
    1. **Kickoff Timeout Transaction**: The Kickoff 2 Transaction must be announced as soon as possible two weeks after the confirmation of the Kickoff 1 Transaction on the Bitcoin mainnet. Otherwise, any verifier can construct a Kickoff Timeout Transaction to punish the operator and terminate the reimbursement process after two weeks and one day.
    2. **Disprove Chain Transaction**: If the side system state revealed by the operator in the Kickoff 2 Transaction is illegal, any verifier can construct a Disprove Chain Transaction to reveal the true side system state. For example, if the side system is a POW chain, the verifier can submit a fork with a larger proof of work within the time range of the start time to two weeks later to initiate a Disprove Chain Transaction. This will punish the operator and terminate the reimbursement process.
 4. **Take1 Transaction**: The operator will wait for the verifier to verify the submitted side system status and reimbursement behavior. This includes checking whether there is a corresponding Bob withdraw transaction in the side system and whether the reimbursement amount and receiving account correspond one-to-one. If there is no verifier challenge within three days after the Kickoff 2 Transaction confirmation, the operator will broadcast the Take1 Transaction to withdraw 100 BTC (including 99 BTC and 1 BTC handling fee) from the n-of-n multi-signed address and withdraw the 2 BTC previously used for guarantee.
-5. **Challenge Transaction**: If the verifier detects that there is no withdrawal transaction and Peg-out Transaction that complies with the protocol within the start time to two weeks later, the verifier will pay 1 BTC to construct and broadcast a Challenge Transaction that consumes the first output of Kickoff 1 Transaction to initiate a challenge. This 1 BTC is used to cover the cost of the operator's response to the challenge and to prevent malicious challenges. As a result, the operator will be unable to retrieve assets through the Take1 Transaction.
+5. **Challenge Transaction**: If the verifier detects that there is no withdrawal transaction and Peg-out Transaction that complies with the protocol before the start time, the verifier will pay 1 BTC to construct and broadcast a Challenge Transaction that consumes the first output of Kickoff 1 Transaction to initiate a challenge. This 1 BTC is used to cover the cost of the operator's response to the challenge and to prevent malicious challenges. As a result, the operator will be unable to retrieve assets through the Take1 Transaction.
    1. **Assert Transaction**: When the operator recognizes that the reimbursement behavior is challenged, it will initiate an Assert Transaction three days after the confirmation of the Kickoff 2 Transaction (reserving time for the Disprove Chain). This transaction will reveal the zero-knowledge proof of the correct reimbursement and the intermediate variables used by the proof subfunction. The zero-knowledge proof verifies whether there is a corresponding withdraw transaction in all blocks of the side system exposed by the operator within two weeks and correctly handles the Peg-out Transaction on the Bitcoin mainnet. One possible implementation is that the side system combines Bob's withdraw transaction with the corresponding Peg-out Transaction on the Bitcoin mainnet and binds it to the Kickoff 1 Transaction issued by the operator. This also solves the double-spending problem, as the operator cannot reuse the same Kickoff Transaction to apply for reimbursement for the same Peg-out Transaction.
       1. **Disprove Transaction**: Any verifier can synchronize the Assert Transaction from the Bitcoin mainnet to obtain the intermediate variables used to verify the zero-knowledge proof sub-function. The verifier can then judge the execution correctness of the zero-knowledge proof verification program locally. If the verifier recognizes an execution error in the sub-function, it can provide the input and output unlocking margin submitted by the operator to punish the operator and terminate the reimbursement process.
       2. **Take2 Transaction**: If no verifier initiates a Disprove Transaction within two weeks after the Assert Transaction is confirmed, the operator will broadcast a Take2 Transaction, withdrawing 100 BTC from the n-of-n multi-signed address and 2 BTC previously used for collateral.
@@ -117,18 +139,18 @@ The Kickoff 1 Transaction is the initiation transaction of the entire reimbursem
     2. The operator will pre-sign to unlock the UTXO so that any verifier can use it in the Kickoff Timeout Transaction after two weeks and one day of the Kickoff 1 Transaction confirmation. By using the `SIGHASH_SINGLE` type to lock the first output and destroy 1.9 BTC (presumably to prevent the operator from challenging himself), the verifier is allowed to add other inputs and outputs to extract the remaining BTC. As shown in Path &#9315; in the figure.
     3. The operator will pre-sign the Taptree Time Lock leaf node so that any verifier can use the third output of the Kickoff 1 Transaction in the Start Timeout Transaction. By using the `SIGHASH_SINGLE | SIGHASH_ANYONECANPAY` signature type, the two inputs of the transaction and the first output of 1.9 BTC are locked. As shown in Path &#9316; in the figure.
 3. A P2TR address, which can be unlocked by the operator. There are two scenarios for using this UTXO:
-    1. The operator needs to reveal the start time of the reimbursement process by opening Bitcommitment within six hours after the Kickoff 1 confirmation. Meanwhile, the script will verify whether the current Bitcoin mainnet block timestamp is greater than the start time. As shown in Path &#9317; in the figure.
+    1. The operator needs to reveal the start time of the reimbursement process within six hours after the Kickoff 1 confirmation. Meanwhile, the script will verify whether the current Bitcoin mainnet block timestamp is greater than the start time. As shown in Path &#9317; in the figure.
     2. The operator will pre-sign the Taptree unlock condition so that any verifier can use it in the Start Timeout Transaction together with the second output of Kickoff 1, six hours after the Kickoff 1 confirmation. By using the `SIGHASH_SINGLE | SIGHASH_ANYONECANPAY` signature type, the two inputs of the transaction and the first output of 1.9 BTC are locked, allowing the verifier to add other inputs and outputs to extract the remaining BTC. As shown in Path &#9318; in the figure.
 
 The format and content of Kickoff 1 Transactions are determined during the BitVM setup. The federation needs to verify whether Kickoff 1 Transactions lock 2 BTC and generate three corresponding outputs. The federation constructs Take1 Transactions based on the first output of Kickoff 1 Transactions.
 
 ### Start Time Transaction
 
-The Start Time Transaction reveals the start time of the withdrawal request by opening Bitcommitment. The format and content of this transaction are determined during the BitVM setup. The federation needs to verify whether the Bitcommitment promised for the start time in the Start Time Transaction is the same as that promised for the Kickoff 2 Transaction and the Disprove Transaction.
+The Start Time Transaction reveals the start time of the reimbursement process by opening Bitcommitment. The format and content of this transaction are determined during the BitVM setup. The federation needs to verify whether the Bitcommitment promised for the start time in the Start Time Transaction is the same as that promised for the Kickoff 2 Transaction and the Disprove Transaction.
 
 ### Kickoff 2 Transaction
 
-The operator reveals the status of the side system two weeks after the confirmation of Kickoff 1. According to the normal process, the side system is highly likely to have completed the synchronization and confirmation of Bitcoin mainnet Peg-out Transactions. Therefore, the status submitted by the side system two weeks later can be used to check and verify the existence and correctness of the withdrawal and Peg-out during this period.
+The operator reveals the status of the side system two weeks after the confirmation of Kickoff 1. In this case, it is nearly impossible for a selfish mining node to submit a forked chain that rolls back blocks from two weeks ago. Therefore, the side system status of two weeks ago can be considered finalized and used to verify the existence and correctness of withdrawal and Peg-out.
 
 The Kickoff 2 Transaction includes two outputs:
 1. The P2TR address that the operator can unlock: The operator can unlock it for building the Take1 Transaction three days after the Kickoff 2 Transaction confirmation.
