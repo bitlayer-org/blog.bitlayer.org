@@ -8,8 +8,6 @@ image: assets/images/20240705/bitvm_bridge.png
 
 **Update 7/23/2024** - Revise the description of the start time
 
-# Introduction
-
 Disclaimer: Some ideas and specifications in this article are currently theoretical. Consult the BitVM community if you find anything uncertain.
 
 It's been a while since our [last BitVM experiment article](https://blog.bitlayer.org/Experiment_of_BitVM_White_Paper/), and lots of changes have happened in the BitVM community. After several iterations, the BitVM bridge protocol now becomes practical and we may see Robin's BitVM bridge come out sometime this year.
