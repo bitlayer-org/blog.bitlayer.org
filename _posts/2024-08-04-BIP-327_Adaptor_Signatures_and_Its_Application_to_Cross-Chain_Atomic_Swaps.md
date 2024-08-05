@@ -3,7 +3,7 @@ layout: post
 title:  "Adaptor Signatures and Its Application to Cross-Chain Atomic Swaps"
 author: lynndell
 categories: [ Atomic Swap ]
-image: assets/images/common/musig2.jpg
+image: assets/images/common/atomicswap.jpg
 ---
 
 # 1. Introduction
@@ -274,7 +274,7 @@ Cross-chain atomic swaps based on adaptor signatures, or at least semi-scriptles
 
 From a privacy perspective, this means that Bitlayer swaps offer better anonymity than HTLC (both parties can locate the contract). However, since one party needs a public contract, Bitlayer swaps have lower anonymity than adaptor signatures. On the non-contract side, swap transactions look like any other transaction. However, on the EVM contract side, the transaction indicates an asset swap. Although one party has a public contract, it is impossible to trace it back to the other chain using even sophisticated chain analysis tools.
 
-[![Heterogeneous atomicswap](/assets/images/20240804-atomicswap/1.png)](/assets/images/20240804-atomicswap/1.png)<center style="font-size:16px;color:#999988;">Figure 1: Heterogeneous cross-chain atomic exchange between UTXO and account model system</center> 
+[![Heterogeneous atomicswap](/assets/images/20240804-atomicswap/1.jpg)](/assets/images/20240804-atomicswap/1.jpg)<center style="font-size:16px;color:#999988;">Figure 1: Heterogeneous cross-chain atomic exchange between UTXO and account model system</center> 
 
 Bitlayer currently supports native ECDSA signatures and can also verify Schnorr signatures through smart contracts. If using native Bitlayer transactions, it is not possible to pre-sign the refund transaction in atomic swaps; thus, Bitlayer smart contract transactions must be used to achieve atomic swaps. However, this process sacrifices privacy, meaning that transactions involved in atomic swaps within the Bitlayer system are traceable but cannot be traced back to the transactions in the BTC system. On the Bitlayer side, a Dapp similar to Tornado Cash can be designed to provide privacy services for the Bitlayer side of BTC and Bitlayer atomic swaps.
 
@@ -282,7 +282,7 @@ Bitlayer currently supports native ECDSA signatures and can also verify Schnorr 
 
 As shown in Figure 2, suppose Bitcoin and Bitlayer both use the Secp256k1 curve, with Bitcoin using Schnorr signatures and Bitlayer using ECDSA. In this case, adaptor signatures based on Schnorr and ECDSA are provably secure. Suppose a simulator $\mathcal{S}$ can break ECDSA given ECDSA and Schnorr signature oracles; it can also break ECDSA with only the ECDSA signature oracle. However, ECDSA is secure. Similarly, suppose a simulator $\mathcal{S}$ can break Schnorr signatures given ECDSA and Schnorr signature oracles; it can also break Schnorr signatures with only the ECDSA signature oracle. However, the Schnorr signature is secure. Therefore, in cross-chain scenarios where adaptor signatures use the same curve but different signature algorithms, they are secure. In other words, adaptor signatures allow one side to use ECDSA and the other side to use Schnorr signatures.
 
-[![different curve atomicswap](/assets/images/20240804-atomicswap/2.png)](/assets/images/20240804-atomicswap/2.png)<center style="font-size:16px;color:#999988;">Figure 2: Same curve, different algorithms, adaptor signatures are secure</center> 
+[![different curve atomicswap](/assets/images/20240804-atomicswap/2.jpg)](/assets/images/20240804-atomicswap/2.jpg)<center style="font-size:16px;color:#999988;">Figure 2: Same curve, different algorithms, adaptor signatures are secure</center> 
 
 ### 3.2.3 Different Curves, Adaptor Signatures are Not Secure
 Suppose Bitcoin uses the Secp256k1 curve with ECDSA signatures, and Bitlayer uses the ed25519 curve with Schnorr signatures. In this case, adaptor signatures cannot be used due to the different curves, which result in different orders of the elliptic curve groups and different modulus coefficients. When Bob adapts $y$ into the ECDSA signature in the Bitcoin system, he calculates $s:=\hat{s}+y$. At this point, the value space of $y$ is the scalar space of the Secp256k1 elliptic curve group. Subsequently, Alice needs to use $y$ to perform Schnorr signatures on the ed25519 elliptic curve group. However, the cofactor of the ed25519 curve is 8, and its modulus coefficient differs from the Secp256k1 elliptic curve group. Therefore, using $y$ to perform Schnorr signatures on the ed25519 curve is not secure.
@@ -295,7 +295,7 @@ On one hand, the custodian can only choose from a few fixed settlement transacti
 
 ## 4.1 Non-interactive Asset Custody Based on Adaptor Signatures
 
-[![adpator asset custody](/assets/images/20240804-atomicswap/3.png)](/assets/images/20240804-atomicswap/3.png)<center style="font-size:16px;color:#999988;">Figure 3: Non-interactive asset custody based on adaptor signatures</center> 
+[![adpator asset custody](/assets/images/20240804-atomicswap/3.jpg)](/assets/images/20240804-atomicswap/3.jpg)<center style="font-size:16px;color:#999988;">Figure 3: Non-interactive asset custody based on adaptor signatures</center> 
 
 As shown in Figure 3, Alice and Bob want to create a 2-of-3 transaction output with a hidden strategy, involving a custodian. Depending on the condition $ c $, either Alice or Bob can spend the transaction output. If a dispute arises between Alice and Bob, the custodian (with public key $ E $ and private key $ e $) decides whether Alice or Bob gets the asset.
 
