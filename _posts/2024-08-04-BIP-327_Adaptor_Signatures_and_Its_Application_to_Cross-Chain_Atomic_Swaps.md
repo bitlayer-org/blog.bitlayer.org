@@ -29,6 +29,8 @@ blockquote {
 |BitVM Cross-Chain Bridge|  Operator advances 1 transaction; Reimbursement for at least 2 transactions|  User 1 transaction| Permissioned. Operator needs to participate in peg-in pre-signing. |  1-of-N| No, not resistant to censorship | If reimbursement is challenged, more L1 transactions are required.|
 |Cross-Chain Atomic Swaps|  User 1 transaction; Counterparty 1 transaction|  User 1 transaction; Counterparty 1 transaction| Permissionless | Trustless | Yes, censorship-resistant | Anyone can participate at any time|
 
+<center style="font-size:16px;color:#999988;">Table 1: Cross-chain transaction technology comparison</center> 
+
 **Centralized Cross-Chain Transactions:** In this method, users first pay Bitcoin to a centralized entity (such as a project party or exchange), which then pays an equivalent amount of assets on the Layer2 network to the user's specified address, completing the cross-chain asset transfer. The advantage of this technology lies in its speed and the relative ease of matching transactions, as the centralized entity can quickly confirm and process transactions. However, the security of this method is entirely dependent on the reliability and reputation of the centralized entity. If the centralized entity encounters technical failures, malicious attacks, or defaults, the user's funds are at high risk. Additionally, centralized cross-chain transactions may leak user privacy, requiring careful consideration when choosing this method. Therefore, despite its convenience and efficiency, the main challenges of centralized cross-chain transactions are security and trust.
 
 **BitVM Cross-Chain Bridge:** This technology is relatively complex. In the Peg-in phase, users pay Bitcoin to a multi-signature address controlled by the BitVM alliance, locking the Bitcoin. Corresponding tokens are minted on the Layer2 network, which are then used for Layer2 transactions and applications. When users burn the Layer2 tokens, it is paid by the Operator. The Operator then reimburses the corresponding amount of Bitcoins from the multi-signage pool controlled by the BitVM consortium. To prevent malicious behavior by the Operator, an optimistic challenge mechanism is employed, allowing any third party to challenge and thwart malicious reimbursement attempts. This technology is complex due to the introduction of the optimistic challenge mechanism, which involves numerous challenge and response transactions, resulting in high transaction fees. Therefore, the BitVM cross-chain bridge is suitable only for very large transactions, similar to the issuance of U, thus its usage frequency is relatively low.
@@ -49,7 +51,7 @@ This paper first introduces the principles of Schnorr/ECDSA adaptor signatures a
 ## 2.1 Schnorr Adaptor Signatures and Its Application to Cross-Chain Atomic Swaps
 
 **Initialization:** 
-	The group $ \mathbb{G} $ has a generator $ G $ and order $ p $. The collision-resistant hash function $ \mathsf{hash} $ maps arbitrary length data $\\{0,1\\}^\*$ to a random integer in $ \mathbb{Z}_p $.
+The group $ \mathbb{G} $ has a generator $ G $ and order $ p $. The collision-resistant hash function $ \mathsf{hash} $ maps arbitrary length data $\\{0,1\\}^\*$ to a random integer in $ \mathbb{Z}_p $.
 	
 **Key Generation:** 
 	*[Bitcoin Transaction 1]* In the Bitcoin system, Alice has 1 BTC. The private key for this asset is $ x \in \mathbb{Z}_p $, and the public key is $ X = x \cdot G $. 
