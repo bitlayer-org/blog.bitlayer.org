@@ -126,15 +126,15 @@ The final OP_1 in the script is because the BTC script requires the stack size t
 If we want the calculation logic to be A AND B = C and A = 1, B = 0, C = 1, the input we need to provide is as follows:
 
 ```
- [
-      Buffer.from([0x69]),  // A preimage1
-      Buffer.from([0x01]),  // OP_IF solution
-      Buffer.from([0x67]),  // B preimage0
-      Buffer.from([]),      // OP_ELSE solution
-      Buffer.from([0x65]),  // E preimage1
-      Buffer.from([0x01]),  // OP_IF solution
-			Buffer.from([0xc00ebfc3])  // unlock hashlock 
-    ];
+[
+	Buffer.from([0x69]),  // A preimage1
+	Buffer.from([0x01]),  // OP_IF solution
+	Buffer.from([0x6]),  // B preimage0
+	Buffer.from([]),      // OP_ELSE solution
+	Buffer.from([0x65]),  // E preimage1
+	Buffer.from([0x01]),  // OP_IF solution
+	Buffer.from([0xc00ebfc3])  // unlock hashlock 
+];
 ```
 
 - Verifier time lock script
@@ -157,12 +157,12 @@ This script allows the Prover to set 0 or 1 by revealing the preimage of <0xf592
 
 We need to construct an Equivocation Script to punish the corresponding Equivocation behavior, the script is as follows:
 
-```jsx
+```
 OP_HASH160 
 <0xf592e757267b7£30732411e78b34472£8b6£46£3>
 OP_EQUALVERIFY 
 OP_HASH160 
- <Oxb157bee96d62£685539269920385a834c3113d9a> 
+<Oxb157bee96d62£685539269920385a834c3113d9a> 
 OP_EQUALVERIFY 
 OP_1
 ```
