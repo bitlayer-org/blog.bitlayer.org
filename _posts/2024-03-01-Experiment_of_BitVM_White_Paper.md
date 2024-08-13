@@ -129,7 +129,7 @@ If we want the calculation logic to be A AND B = C and A = 1, B = 0, C = 1, the 
 [
 	Buffer.from([0x69]),  // A preimage1
 	Buffer.from([0x01]),  // OP_IF solution
-	Buffer.from([0x6]),  // B preimage0
+	Buffer.from([0x66]),  // B preimage0
 	Buffer.from([]),      // OP_ELSE solution
 	Buffer.from([0x65]),  // E preimage1
 	Buffer.from([0x01]),  // OP_IF solution
