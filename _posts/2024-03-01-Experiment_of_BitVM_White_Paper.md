@@ -153,16 +153,16 @@ The script shown in the third chapter of the Bitvm Paper, Bit Value Commitment, 
 
 ![Equivocation Script](../assets/images/20240301/equivocation_script.png)
 
-This script allows the Prover to set 0 or 1 by revealing the preimage of <0xf592e757267b7£30732411e78b34472£8b6£46£3> or <Oxb157bee96d62£685539269920385a834c3113d9a>. However, there is a possibility that the Prover could manipulate the calculation result by revealing 0 and 1 at the same time. This situation is called Equivocation in BitVM and is a behavior that needs to be punished.
+This script allows the Prover to set 0 or 1 by revealing the preimage of <0xf592e757267b7f30732411e78b34472f8b6f46f3> or <Oxb157bee96d62f685539269920385a834c3113d9a>. However, there is a possibility that the Prover could manipulate the calculation result by revealing 0 and 1 at the same time. This situation is called Equivocation in BitVM and is a behavior that needs to be punished.
 
 We need to construct an Equivocation Script to punish the corresponding Equivocation behavior, the script is as follows:
 
 ```
 OP_HASH160 
-<0xf592e757267b7£30732411e78b34472£8b6£46£3>
+<0xf592e757267b7f30732411e78b34472f8b6f46f3>
 OP_EQUALVERIFY 
 OP_HASH160 
-<Oxb157bee96d62£685539269920385a834c3113d9a> 
+<Oxb157bee96d62f685539269920385a834c3113d9a> 
 OP_EQUALVERIFY 
 OP_1
 ```
